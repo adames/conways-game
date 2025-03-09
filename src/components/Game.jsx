@@ -19,7 +19,7 @@ const Game = () => {
     if (isRunning) {
       intervalId.current = setInterval(() => {
         updateGrid();
-      }, 100);
+      }, 1000);
     }
     return () => {
       clearInterval(intervalId.current);
@@ -30,7 +30,7 @@ const Game = () => {
   return (
     <div className="Game">
       <Grid />
-      <Controls onClick={handleClick} />
+      <Controls onClick={handleClick} isRunning={isRunning} />
     </div>
   );
 };

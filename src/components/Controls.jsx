@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Controls = ({ onClick }) => {
+const Controls = ({ onClick, isRunning }) => {
 
     const handleButtonClick = () => {
         onClick();
@@ -8,8 +8,7 @@ const Controls = ({ onClick }) => {
 
   return (
     <button onClick={handleButtonClick}>
-    {/* {isRunning ? "Stop" : "Start"} */}
-    Start
+        {isRunning ? "Stop" : "Start"}
     </button>
   );
 };
