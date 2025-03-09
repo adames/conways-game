@@ -66,11 +66,11 @@ const Game = () => {
         row.map((cell, j) => {
           const neighbors = countActiveNeighbors(grid, i, j);
           if (cell && (neighbors === 2 || neighbors === 3)) {
-            return true; // Cell lives
+            return true;
           } else if (!cell && neighbors === 3) {
-            return true; // Cell is born
+            return true;
           } else {
-            return false; // Cell dies or remains dead
+            return false;
           }
         })
       );
