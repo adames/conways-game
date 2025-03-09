@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const Grid = () => {
   const row = 20;
   const column = 20;
+  let intervalId = useRef(null);
   const generateGrid = () => {
     const emptyGrid = [];
     for (let i = 0; i < row; i++) {
@@ -23,15 +24,22 @@ const Grid = () => {
     });
   };
 
+
+  const updateGrid = () => {
+    
+  }
+
   useEffect(() => {
-    let intervalId;
     if (isRunning) {
-      intervalId = setInterval(() => {
-        console.log('hello world')
-      }, 100);
+        intervalId.current = setInterval(() => { 
+            updateGrid() 
+        }, 1000);
     }
-    return () => intervalId && clearInterval(intervalId);
-  }, [isRunning]);
+    return () => {
+        clearInterval(intervalId.current);
+        intervalId.current = null;
+    }
+  }, []);
 
   return (
     <div
