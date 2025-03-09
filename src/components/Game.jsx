@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import Grid, {ROWS, COLUMNS} from "./Grid";
+import Grid, { ROWS, COLUMNS } from "./Grid";
 import Controls from "./Controls";
 
 const Game = () => {
@@ -64,11 +64,16 @@ const Game = () => {
     const newGrid = grid.map((row, i) =>
       row.map((cell, j) => {
         const neighbors = countActiveNeighbors(grid, i, j);
-        return neighbors === 3 || (cell && neighbors === 2);
+        if (cell && (neighbors === 2 || neighbors === 3)) {
+          return true; // Cell lives
+        } else if (!cell && neighbors === 3) {
+          return true; // Cell is born
+        } else {
+          return false; // Cell dies or remains dead
+        }
       })
     );
     setGrid(newGrid);
-    return grid;
   };
 
   return (
