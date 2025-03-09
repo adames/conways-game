@@ -24,7 +24,7 @@ const Grid = () => {
   };
 
   const updateGrid = (currentGrid) => {
-    console.log("updatedGrid");
+    console.log(currentGrid);
   };
 
   useEffect(() => {
@@ -35,7 +35,7 @@ const Grid = () => {
       }, 100);
     }
     return intervalId && clearInterval(intervalId);
-  });
+  }, [isRunning]);
 
   return (
     <div
