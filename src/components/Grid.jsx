@@ -41,10 +41,17 @@ const Grid = () => {
         }
       }
     }
+    return count;
   };
 
-  const updateGrid = () => {
+  const updateGrid = (grid) => {
     console.log("Updating Grid");
+    return grid.map((row, i) =>
+      row.map((cell, j) => {
+        const neighbors = countActiveNeighbors(grid, i, j);
+        return neighbors === 3 || (cell && neighbors === 2);
+      })
+    );
   };
 
   return (
@@ -56,7 +63,7 @@ const Grid = () => {
       }}
     >
       {grid.map((row, rowIndex) =>
-        row.map((column, columnIndex) => (
+        row.map((cell, columnIndex) => (
           <button
             onClick={handleClick}
             key={`${rowIndex}-${columnIndex}`}
@@ -65,7 +72,7 @@ const Grid = () => {
             style={{
               width: 20,
               height: 20,
-              backgroundColor: grid[rowIndex][columnIndex] ? "black" : "white",
+              backgroundColor: cell ? "black" : "white",
               border: "solid 1px black",
             }}
           />
