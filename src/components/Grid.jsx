@@ -41,7 +41,7 @@ const Grid = () => {
             style={{
               width: 20,
               height: 20,
-              color: grid[rowIndex][columnIndex] ? "black" : "white",
+              backgroundColor: grid[rowIndex][columnIndex] ? "black" : "white",
               border: "solid 1px black",
             }}
           />
