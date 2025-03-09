@@ -60,20 +60,22 @@ const Game = () => {
     return count;
   };
 
-  const updateGrid = (grid) => {
-    const newGrid = grid.map((row, i) =>
-      row.map((cell, j) => {
-        const neighbors = countActiveNeighbors(grid, i, j);
-        if (cell && (neighbors === 2 || neighbors === 3)) {
-          return true; // Cell lives
-        } else if (!cell && neighbors === 3) {
-          return true; // Cell is born
-        } else {
-          return false; // Cell dies or remains dead
-        }
-      })
-    );
-    setGrid(newGrid);
+  const updateGrid = () => {
+    setGrid((prevGrid) => {
+      const newGrid = grid.map((row, i) =>
+        row.map((cell, j) => {
+          const neighbors = countActiveNeighbors(grid, i, j);
+          if (cell && (neighbors === 2 || neighbors === 3)) {
+            return true; // Cell lives
+          } else if (!cell && neighbors === 3) {
+            return true; // Cell is born
+          } else {
+            return false; // Cell dies or remains dead
+          }
+        })
+      );
+      return newGrid;
+    });
   };
 
   return (
