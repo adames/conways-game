@@ -15,7 +15,6 @@ const Grid = () => {
   const handleClick = (event) => {
     const x = event.target.getAttribute("data-row");
     const y = event.target.getAttribute("data-column");
-    console.log(grid);
     setGrid((previousGrid) => {
       const gridCopy = previousGrid.map((row) => [...row]);
       gridCopy[x][y] = !gridCopy[x][y];
@@ -52,3 +51,9 @@ const Grid = () => {
 };
 
 export default Grid;
+
+/*
+  1. Any live cell with 2-3 neighbors survives
+  2. Any dead cell with 3 neighbors becomes alive
+  3. All other cells die or stay dead
+*/
