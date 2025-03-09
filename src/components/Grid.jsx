@@ -22,6 +22,12 @@ const Grid = () => {
     });
   };
 
+  /*
+  1. Any live cell with 2-3 neighbors survives
+  2. Any dead cell with 3 neighbors becomes alive
+  3. All other cells die or stay dead
+*/
+
   return (
     <div
       className="Grid"
@@ -51,9 +57,3 @@ const Grid = () => {
 };
 
 export default Grid;
-
-/*
-  1. Any live cell with 2-3 neighbors survives
-  2. Any dead cell with 3 neighbors becomes alive
-  3. All other cells die or stay dead
-*/
