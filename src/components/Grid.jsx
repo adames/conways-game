@@ -13,7 +13,6 @@ const Grid = () => {
   };
 
   const [grid, setGrid] = useState(generateGrid);
-  
 
   const handleClick = (event) => {
     const x = event.target.getAttribute("data-row");
@@ -24,7 +23,6 @@ const Grid = () => {
       return gridCopy;
     });
   };
-
 
   return (
     <div

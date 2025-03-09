@@ -1,19 +1,19 @@
-import {useState, useEffect, useRef} from 'react';
-import Grid from './Grid';
-import Controls from './Controls';
+import { useState, useEffect, useRef } from "react";
+import Grid from "./Grid";
+import Controls from "./Controls";
 
 const Game = () => {
   const [isRunning, setIsRunning] = useState(false);
   let intervalId = useRef(null);
 
   const handleClick = () => {
-    console.log('handle Game click')
-    setIsRunning(isRunning => !isRunning)
-  }
+    console.log("Clicking Start");
+    setIsRunning((isRunning) => !isRunning);
+  };
 
   const updateGrid = () => {
-    console.log("updating grid")
-  }
+    console.log("Updating Grid");
+  };
 
   useEffect(() => {
     if (isRunning) {
@@ -29,10 +29,10 @@ const Game = () => {
 
   return (
     <div className="Game">
-        <Grid />
-        <Controls props={{handleClick, isRunning}}/>
+      <Grid />
+      <Controls props={{ handleClick, isRunning }} />
     </div>
-  )
+  );
 };
 
 export default Game;
