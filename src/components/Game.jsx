@@ -31,7 +31,7 @@ const Game = () => {
   useEffect(() => {
     if (isRunning) {
       intervalId.current = setInterval(() => {
-        updateGrid(grid);
+        updateGrid();
       }, 1000);
     }
     return () => {
@@ -62,7 +62,7 @@ const Game = () => {
 
   const updateGrid = () => {
     setGrid((prevGrid) => {
-      const newGrid = grid.map((row, i) =>
+      const newGrid = prevGrid.map((row, i) =>
         row.map((cell, j) => {
           const neighbors = countActiveNeighbors(grid, i, j);
           if (cell && (neighbors === 2 || neighbors === 3)) {
