@@ -1,13 +1,13 @@
 import { useState } from "react";
 
 const Grid = () => {
-  const row = 20;
-  const column = 20;
+  const gridRows = 20;
+  const gridColumns = 20;
 
   const generateGrid = () => {
     const emptyGrid = [];
-    for (let i = 0; i < row; i++) {
-      emptyGrid.push(Array.from(Array(column), () => false));
+    for (let i = 0; i < gridRows; i++) {
+      emptyGrid.push(Array.from(Array(gridColumns), () => false));
     }
     return emptyGrid;
   };
@@ -24,12 +24,31 @@ const Grid = () => {
     });
   };
 
+  const countActiveNeighbors = (grid, row, column) => {
+    let count = 0;
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        if (i === 0 && j === 0) continue;
+        const newRow = row + i;
+        const newColumn = column + j;
+        if (
+          newRow >= 0 &&
+          newRow < row &&
+          newColumn >= 0 &&
+          newColumn < column
+        ) {
+          count += grid[newRow][newColumn] ? 1 : 0;
+        }
+      }
+    }
+  };
+
   return (
     <div
       className="Grid"
       style={{
         display: "grid",
-        gridTemplateColumns: `repeat(${column}, 20px)`,
+        gridTemplateColumns: `repeat(${gridColumns}, 20px)`,
       }}
     >
       {grid.map((row, rowIndex) =>

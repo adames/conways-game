@@ -14,6 +14,12 @@ const Game = () => {
   const updateGrid = () => {
     console.log("Updating Grid");
   };
+/*
+Birth: A dead cell becomes alive if it has exactly three live neighbors
+Death by isolation: A live cell dies if it has one or fewer live neighbors
+Death by overcrowding: A live cell dies if it has four or more live neighbors
+Survival: A live cell survives if it has two or three live neighbors
+*/
 
   useEffect(() => {
     if (isRunning) {
