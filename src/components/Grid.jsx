@@ -1,9 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 
 const Grid = () => {
   const row = 20;
   const column = 20;
-  let intervalId = useRef(null);
+
   const generateGrid = () => {
     const emptyGrid = [];
     for (let i = 0; i < row; i++) {
@@ -11,8 +11,9 @@ const Grid = () => {
     }
     return emptyGrid;
   };
+
   const [grid, setGrid] = useState(generateGrid);
-  const [isRunning] = useState(false);
+  
 
   const handleClick = (event) => {
     const x = event.target.getAttribute("data-row");
@@ -24,22 +25,6 @@ const Grid = () => {
     });
   };
 
-
-  const updateGrid = () => {
-    
-  }
-
-  useEffect(() => {
-    if (isRunning) {
-        intervalId.current = setInterval(() => { 
-            updateGrid() 
-        }, 1000);
-    }
-    return () => {
-        clearInterval(intervalId.current);
-        intervalId.current = null;
-    }
-  }, []);
 
   return (
     <div

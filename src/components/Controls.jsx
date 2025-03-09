@@ -1,11 +1,9 @@
-import {useState} from 'react';
 
-const Controls = () => {
-    const [isRunning, setIsRunning] = useState(false);
+const Controls = ({handleClick, isRunning}) => {
 
     return (
         <div>
-            <button onClick={() => setIsRunning(runningState => !runningState)}>
+            <button onClick={() => handleClick}>
                 {isRunning ? "Stop" : "Start"}
             </button>
         </div>

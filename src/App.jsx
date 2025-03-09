@@ -1,12 +1,10 @@
 import "./App.css";
-import Grid from "./components/Grid";
-import Controls from "./components/Controls";
+import Game from "./components/Game";
 
 const App = () => {
   return (
     <div className="App">
-      <Grid />
-      <Controls />
+      <Game />
     </div>
   );
 };
