@@ -45,7 +45,6 @@ const Grid = () => {
   };
 
   const updateGrid = (grid) => {
-    console.log("Updating Grid");
     return grid.map((row, i) =>
       row.map((cell, j) => {
         const neighbors = countActiveNeighbors(grid, i, j);
