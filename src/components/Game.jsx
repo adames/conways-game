@@ -11,9 +11,7 @@ const Game = () => {
     setIsRunning((isRunning) => !isRunning);
   };
 
-  const updateGrid = () => {
-    console.log("Updating Grid");
-  };
+
 /*
 Birth: A dead cell becomes alive if it has exactly three live neighbors
 Death by isolation: A live cell dies if it has one or fewer live neighbors

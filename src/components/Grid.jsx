@@ -43,6 +43,10 @@ const Grid = () => {
     }
   };
 
+  const updateGrid = () => {
+    console.log("Updating Grid");
+  };
+
   return (
     <div
       className="Grid"
