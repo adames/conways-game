@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const Grid = () => {
   const row = 20;
@@ -11,6 +11,7 @@ const Grid = () => {
     return emptyGrid;
   };
   const [grid, setGrid] = useState(generateGrid);
+  const [isRunning] = useState(false);
 
   const handleClick = (event) => {
     const x = event.target.getAttribute("data-row");
@@ -22,11 +23,19 @@ const Grid = () => {
     });
   };
 
-  /*
-  1. Any live cell with 2-3 neighbors survives
-  2. Any dead cell with 3 neighbors becomes alive
-  3. All other cells die or stay dead
-*/
+  const updateGrid = (currentGrid) => {
+    console.log("updatedGrid");
+  };
+
+  useEffect(() => {
+    let intervalId;
+    if (isRunning) {
+      intervalId = setInterval(() => {
+        setGrid((currentGrid) => updateGrid(currentGrid));
+      }, 100);
+    }
+    return intervalId && clearInterval(intervalId);
+  });
 
   return (
     <div
