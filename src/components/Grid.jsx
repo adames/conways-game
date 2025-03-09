@@ -23,18 +23,14 @@ const Grid = () => {
     });
   };
 
-  const updateGrid = (currentGrid) => {
-    console.log(currentGrid);
-  };
-
   useEffect(() => {
     let intervalId;
     if (isRunning) {
       intervalId = setInterval(() => {
-        setGrid((currentGrid) => updateGrid(currentGrid));
+        console.log('hello world')
       }, 100);
     }
-    return intervalId && clearInterval(intervalId);
+    return () => intervalId && clearInterval(intervalId);
   }, [isRunning]);
 
   return (
