@@ -1,19 +1,37 @@
 import React, { useState, useEffect, useRef } from "react";
-import Grid from "./Grid";
+import Grid, {ROWS, COLUMNS} from "./Grid";
 import Controls from "./Controls";
 
 const Game = () => {
-  const [isRunning, setIsRunning] = useState(false);
   let intervalId = useRef(null);
+  const generateGrid = () => {
+    const emptyGrid = [];
+    for (let i = 0; i < ROWS; i++) {
+      emptyGrid.push(Array.from(Array(COLUMNS), () => false));
+    }
+    return emptyGrid;
+  };
+  const [grid, setGrid] = useState(generateGrid);
+  const [isRunning, setIsRunning] = useState(false);
 
-  const handleClick = () => {
+  const handleStartClick = () => {
     setIsRunning((isRunning) => !isRunning);
+  };
+
+  const handleGridClick = (e) => {
+    const x = e.target.getAttribute("data-row");
+    const y = e.target.getAttribute("data-column");
+    setGrid((previousGrid) => {
+      const gridCopy = previousGrid.map((row) => [...row]);
+      gridCopy[x][y] = !gridCopy[x][y];
+      return gridCopy;
+    });
   };
 
   useEffect(() => {
     if (isRunning) {
       intervalId.current = setInterval(() => {
-        updateGrid();
+        updateGrid(grid);
       }, 1000);
     }
     return () => {
@@ -22,10 +40,41 @@ const Game = () => {
     };
   }, [isRunning]);
 
+  const countActiveNeighbors = (grid, row, column) => {
+    let count = 0;
+    for (let i = -1; i <= 1; i++) {
+      for (let j = -1; j <= 1; j++) {
+        if (i === 0 && j === 0) continue;
+        const newRow = row + i;
+        const newColumn = column + j;
+        if (
+          newRow >= 0 &&
+          newRow < row &&
+          newColumn >= 0 &&
+          newColumn < column
+        ) {
+          count += grid[newRow][newColumn] ? 1 : 0;
+        }
+      }
+    }
+    return count;
+  };
+
+  const updateGrid = (grid) => {
+    const newGrid = grid.map((row, i) =>
+      row.map((cell, j) => {
+        const neighbors = countActiveNeighbors(grid, i, j);
+        return neighbors === 3 || (cell && neighbors === 2);
+      })
+    );
+    setGrid(newGrid);
+    return grid;
+  };
+
   return (
     <div className="Game">
-      <Grid />
-      <Controls onClick={handleClick} isRunning={isRunning} />
+      <Grid grid={grid} handleGridClick={handleGridClick} />
+      <Controls onClick={handleStartClick} isRunning={isRunning} />
     </div>
   );
 };
