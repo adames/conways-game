@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Grid from "./Grid";
 import Controls from "./Controls";
 
@@ -6,8 +6,8 @@ const Game = () => {
   const [isRunning, setIsRunning] = useState(false);
   let intervalId = useRef(null);
 
-  const handleClick = () => {
-    console.log("Clicking Start");
+  const handleClick = (e) => {
+    console.log("Start event: " + e);
     setIsRunning((isRunning) => !isRunning);
   };
 
@@ -30,7 +30,7 @@ const Game = () => {
   return (
     <div className="Game">
       <Grid />
-      <Controls props={{ handleClick, isRunning }} />
+      <Controls onClick={handleClick} />
     </div>
   );
 };

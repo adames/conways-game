@@ -1,10 +1,16 @@
-const Controls = ({ handleClick, isRunning }) => {
+import React from 'react';
+
+const Controls = ({ onClick }) => {
+
+    const handleButtonClick = () => {
+        onClick();
+    }
+
   return (
-    <div>
-      <button onClick={() => handleClick}>
-        {isRunning ? "Stop" : "Start"}
-      </button>
-    </div>
+    <button onClick={handleButtonClick}>
+    {/* {isRunning ? "Stop" : "Start"} */}
+    Start
+    </button>
   );
 };
 
