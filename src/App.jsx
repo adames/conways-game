@@ -14,7 +14,7 @@ function App() {
 export default App
 
 /*
-  <li>1. Any live cell with 2-3 neighbors survives</li>
-  <li>2. Any dead cell with 3 neighbors becomes alive</li>
-  <li>3. All other cells die or stay dead</li>
+  1. Any live cell with 2-3 neighbors survives
+  2. Any dead cell with 3 neighbors becomes alive
+  3. All other cells die or stay dead
 */

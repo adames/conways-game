@@ -15,7 +15,6 @@ const Grid = () => {
   const handleClick = (event) => {
     const x = event.target.getAttribute("data-row");
     const y = event.target.getAttribute("data-column");
-    console.log(`x = ${x}, y = ${y}`);
     console.log(grid);
     setGrid((previousGrid) => {
       const gridCopy = previousGrid.map((row) => [...row]);
